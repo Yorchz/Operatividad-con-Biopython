@@ -3,10 +3,10 @@ from src.orchestrator.ReaderOrchestrator import ReaderOrchestrator
 
 
 class MainOrchestrator:
-    def __init__(self, download_service, fasta_dir):
+    def __init__(self, config):
         """Initialize with the download orchestrator and the reader orchestrator."""
-        self.download_orchestrator = DownloaderOrchestrator(download_service)
-        self.reader_orchestrator = ReaderOrchestrator(fasta_dir)
+        self.download_orchestrator = DownloaderOrchestrator(config)
+        self.reader_orchestrator = ReaderOrchestrator(config)
 
     def execute_download(self, file_ids):
         """Execute the download of files."""

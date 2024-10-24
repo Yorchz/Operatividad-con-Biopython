@@ -3,9 +3,9 @@ from src.utils.FastaFileHandler import FastaFileHandler
 
 
 class ReaderOrchestrator:
-    def __init__(self, fasta_dir):
+    def __init__(self, config):
         """Initialize with the directory where FASTA files are located."""
-        self.fasta_handler = FastaFileHandler(fasta_dir)
+        self.fasta_handler = FastaFileHandler(config["download"]["download_directory"])
         self.reader = FastaBatchReader(self.fasta_handler)
 
     def read_single_fasta(self, filename):
