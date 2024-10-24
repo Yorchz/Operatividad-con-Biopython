@@ -1,14 +1,13 @@
 import json
 from typing import List, Optional
-
-from api_connection_download.conections.Connection import NCBIConnection
-from api_connection_download.downloader.FastaDownloader import FastaDownloader
-from api_connection_download.downloader.IdFetcher import IdFetcher
-from api_connection_download.downloader.SingleFastaDownloader import SingleFastaDownloader
-from api_connection_download.utils.FilePathHelper import FilePathHelper
-from api_connection_download.validator.FormatValidator import FormatValidator
-from api_connection_download.validator.NonEmptyValidator import NonEmptyValidator
-from api_connection_download.validator.SequenceValidator import SequenceValidator
+from src.conections.Connection import NCBIConnection
+from src.fasta_downloader.downloader.FastaDownloader import FastaDownloader
+from src.fasta_downloader.downloader.IdFetcher import IdFetcher
+from src.fasta_downloader.downloader.SingleFastaDownloader import SingleFastaDownloader
+from src.fasta_downloader.validator.FormatValidator import FormatValidator
+from src.fasta_downloader.validator.NonEmptyValidator import NonEmptyValidator
+from src.fasta_downloader.validator.SequenceValidator import SequenceValidator
+from src.utils.FilePathHelper import FilePathHelper
 
 
 class MainOrchestrator:
@@ -30,9 +29,7 @@ class MainOrchestrator:
         self.connection.connect()
 
         identifiers = self._get_identifiers(count, ids)
-
         downloaded_files = self.downloader.download_fasta_files(identifiers)
-
         valid_files = self.validate_files(downloaded_files)
 
         print("\nArchivos FASTA válidos:", valid_files)
@@ -42,7 +39,6 @@ class MainOrchestrator:
         valid_files: List[str] = []
         for file_name in files:
             if file_name and all(validator.validate(file_name) for validator in self.validators):
-                # Usar la función oculta para obtener solo el nombre del archivo
                 valid_files.append(FilePathHelper.get_filename_only(file_name))
         return valid_files
 

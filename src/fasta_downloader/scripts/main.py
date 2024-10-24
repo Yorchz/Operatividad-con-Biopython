@@ -1,5 +1,5 @@
-from api_connection_download.config.Config import Config
-from api_connection_download.orchestrator.Main_orchestrator import MainOrchestrator
+from src.config.Config import Config
+from src.fasta_downloader.orchestrator.Main_orchestrator import MainOrchestrator
 
 
 def main() -> None:

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from api_connection_download.downloader.SingleFastaDownloader import SingleFastaDownloader
+from src.fasta_downloader.downloader.SingleFastaDownloader import SingleFastaDownloader
 
 
 class FastaDownloader:
