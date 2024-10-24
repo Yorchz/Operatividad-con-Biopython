@@ -1,4 +1,4 @@
-from src.fasta_reader.reader.BaseFastaReader import BaseFastaReader
+from src.reader.BaseFastaReader import BaseFastaReader
 from src.utils.FilePathHelper import FilePathHelper
 
 

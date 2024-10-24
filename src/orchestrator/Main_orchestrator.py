@@ -1,12 +1,12 @@
 import json
 from typing import List, Optional
 from src.conections.Connection import NCBIConnection
-from src.fasta_downloader.downloader.FastaDownloader import FastaDownloader
-from src.fasta_downloader.downloader.IdFetcher import IdFetcher
-from src.fasta_downloader.downloader.SingleFastaDownloader import SingleFastaDownloader
-from src.fasta_downloader.validator.FormatValidator import FormatValidator
-from src.fasta_downloader.validator.NonEmptyValidator import NonEmptyValidator
-from src.fasta_downloader.validator.SequenceValidator import SequenceValidator
+from src.downloader.FastaDownloader import FastaDownloader
+from src.downloader.IdFetcher import IdFetcher
+from src.downloader.SingleFastaDownloader import SingleFastaDownloader
+from src.validator.FormatValidator import FormatValidator
+from src.validator.NonEmptyValidator import NonEmptyValidator
+from src.validator.SequenceValidator import SequenceValidator
 from src.utils.FilePathHelper import FilePathHelper
 
 

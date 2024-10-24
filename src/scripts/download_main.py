@@ -1,5 +1,5 @@
 from src.config.Config import Config
-from src.fasta_downloader.orchestrator.Main_orchestrator import MainOrchestrator
+from src.orchestrator.Main_orchestrator import MainOrchestrator
 
 
 def main() -> None:

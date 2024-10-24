@@ -1,10 +1,10 @@
-from src.fasta_reader.reader.FastaBatchReader import FastaBatchReader
+from src.reader.FastaBatchReader import FastaBatchReader
 from src.utils.FastaFileHandler import FastaFileHandler
 
 
 def main(filename=None):
     # Inicializar el manejador de archivos con el directorio de FASTA
-    fasta_handler = FastaFileHandler('C:/Users/jorge/Documents/Universidad/Quinto/Primer Cuatri/BIO/BiopyhtonOperatividad/data/download_fasta')
+    fasta_handler = FastaFileHandler('/data/download_fasta')
 
     # Inicializar el lector de archivos FASTA
     fasta_batch_reader = FastaBatchReader(fasta_handler)
