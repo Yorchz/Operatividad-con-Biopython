@@ -13,7 +13,7 @@ Config = {
         "db": "nucleotide",
         "rettype": "fasta",
         "retmode": "text",
-        "download_directory": os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..",
-                                                           "download_fasta"))
+        "download_directory": os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..",
+                                                           "data", "download_fasta"))
     }
 }

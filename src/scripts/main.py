@@ -1,4 +1,3 @@
-from src.conections.Connection import NCBIConnection  # Usando tu conexión ya implementada
 from src.config.Config import Config
 from src.orchestrator.MainOrchestrator import MainOrchestrator
 

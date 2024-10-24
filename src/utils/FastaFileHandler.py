@@ -5,6 +5,7 @@ from src.utils.FilePathHelper import FilePathHelper
 class FastaFileHandler:
     def __init__(self, fasta_dir):
         self.fasta_dir = fasta_dir
+        print(fasta_dir)
 
     def get_fasta_files(self):
         """Return a list of all fasta files in the directory."""
