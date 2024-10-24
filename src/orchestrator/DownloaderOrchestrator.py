@@ -10,7 +10,7 @@ from src.validator.SequenceValidator import SequenceValidator
 from src.utils.FilePathHelper import FilePathHelper
 
 
-class MainOrchestrator:
+class DownloaderOrchestrator:
     def __init__(self, config: json):
         self.connection = NCBIConnection(config["email"]["address"])
 
