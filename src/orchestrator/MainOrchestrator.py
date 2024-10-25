@@ -38,7 +38,6 @@ class MainOrchestrator:
         record_id, sequence = self.execute_read_single(filename)
         custom_gc = self.calculate_gc_custom(filename)
         biopython_gc = self.calculate_gc_biopython(filename)
-        print(f"Comparing GC Content for {record_id}:")
         GCOrchestrator.compare_gc_methods(custom_gc, biopython_gc)
 
 

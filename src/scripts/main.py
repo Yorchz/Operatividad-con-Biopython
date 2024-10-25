@@ -11,13 +11,13 @@ def main(filename=None, download=None, file_ids=None):
         orchestrator.execute_download(file_ids)
 
     if filename:
-        print(orchestrator.execute_read_single(filename))
+        orchestrator.execute_read_single(filename)
     else:
         orchestrator.execute_read_all()
 
-    print(orchestrator.calculate_gc_custom(filename))
-    print(orchestrator.calculate_gc_biopython(filename))
-    print(orchestrator.calculate_and_compare_gc_content(filename))
+    #orchestrator.calculate_gc_custom(filename)
+    #orchestrator.calculate_gc_biopython(filename)
+    orchestrator.calculate_and_compare_gc_content(filename)
 
 
 if __name__ == "__main__":
