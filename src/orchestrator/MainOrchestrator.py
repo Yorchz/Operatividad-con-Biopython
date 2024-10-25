@@ -10,6 +10,7 @@ class MainOrchestrator:
 
     def execute_download(self, file_ids):
         """Execute the download of files."""
+        print(1)
         self.download_orchestrator.download_files(file_ids)
 
     def execute_read_single(self, filename):

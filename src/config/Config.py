@@ -6,8 +6,8 @@ Config = {
     },
     "data": {
         "search_term": "Homo sapiens[Organism]",
-        "count": 3,
-        "ids": ["NM_001301717", "NM_001374413", "NM_001301720"]
+        #"count": 3,
+        #"ids": ["NM_001301717", "NM_001374413", "NM_001301720"]
     },
     "download": {
         "db": "nucleotide",

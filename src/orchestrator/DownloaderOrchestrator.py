@@ -25,8 +25,9 @@ class DownloaderOrchestrator:
             NonEmptyValidator()
         ]
 
-    def execute(self, count: Optional[int] = None, ids: Optional[List[str]] = None) -> List[str]:
+    def download_files(self, count: Optional[int] = None, ids: Optional[List[str]] = None) -> List[str]:
         self.connection.connect()
+        print(4)
 
         identifiers = self._get_identifiers(count, ids)
         downloaded_files = self.downloader.download_fasta_files(identifiers)

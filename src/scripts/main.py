@@ -2,11 +2,12 @@ from src.config.Config import Config
 from src.orchestrator.MainOrchestrator import MainOrchestrator
 
 
-def main(filename=None, download=False, file_ids=None):
+def main(filename=None, download=None, file_ids=None):
 
     orchestrator = MainOrchestrator(Config)
 
     if download and file_ids:
+        print(2)
         orchestrator.execute_download(file_ids)
 
     if filename:
@@ -16,4 +17,4 @@ def main(filename=None, download=False, file_ids=None):
 
 
 if __name__ == "__main__":
-    main()
+    main("NM_001301717", True, ["NM_001301717", "NM_001374413", "NM_001301720"])
