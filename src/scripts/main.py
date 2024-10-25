@@ -7,9 +7,7 @@ def main(filename=None, download=None, file_ids=None):
     orchestrator = MainOrchestrator(Config)
 
     if download and file_ids:
-        print(2)
         orchestrator.execute_download(file_ids)
-
     if filename:
         orchestrator.execute_read_single(filename)
     else:
