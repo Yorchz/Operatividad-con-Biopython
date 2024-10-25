@@ -1,9 +1,9 @@
-from api_connection_download.config.Config import Config
-from api_connection_download.orchestrator.Main_orchestrator import MainOrchestrator
+from src.config.Config import Config
+from src.orchestrator.DownloaderOrchestrator import DownloaderOrchestrator
 
 
 def main() -> None:
-    orchestrator = MainOrchestrator(Config)
+    orchestrator = DownloaderOrchestrator(Config)
 
     #count = Config.get('data').get('count')
     #orchestrator.execute(count=count)

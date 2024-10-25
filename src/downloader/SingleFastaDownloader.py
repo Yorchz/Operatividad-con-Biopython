@@ -1,5 +1,4 @@
 import json
-
 from Bio import Entrez
 from typing import Optional
 import os

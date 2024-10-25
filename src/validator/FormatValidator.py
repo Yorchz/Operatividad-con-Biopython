@@ -1,6 +1,5 @@
 from Bio import SeqIO
-
-from api_connection_download.utils.FilePathHelper import FilePathHelper
+from src.utils.FilePathHelper import FilePathHelper
 
 
 class FormatValidator:

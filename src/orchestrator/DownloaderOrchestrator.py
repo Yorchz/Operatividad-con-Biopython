@@ -1,17 +1,16 @@
 import json
 from typing import List, Optional
+from src.conections.Connection import NCBIConnection
+from src.downloader.FastaDownloader import FastaDownloader
+from src.downloader.IdFetcher import IdFetcher
+from src.downloader.SingleFastaDownloader import SingleFastaDownloader
+from src.validator.FormatValidator import FormatValidator
+from src.validator.NonEmptyValidator import NonEmptyValidator
+from src.validator.SequenceValidator import SequenceValidator
+from src.utils.FilePathHelper import FilePathHelper
 
-from api_connection_download.conections.Connection import NCBIConnection
-from api_connection_download.downloader.FastaDownloader import FastaDownloader
-from api_connection_download.downloader.IdFetcher import IdFetcher
-from api_connection_download.downloader.SingleFastaDownloader import SingleFastaDownloader
-from api_connection_download.utils.FilePathHelper import FilePathHelper
-from api_connection_download.validator.FormatValidator import FormatValidator
-from api_connection_download.validator.NonEmptyValidator import NonEmptyValidator
-from api_connection_download.validator.SequenceValidator import SequenceValidator
 
-
-class MainOrchestrator:
+class DownloaderOrchestrator:
     def __init__(self, config: json):
         self.connection = NCBIConnection(config["email"]["address"])
 
@@ -26,13 +25,12 @@ class MainOrchestrator:
             NonEmptyValidator()
         ]
 
-    def execute(self, count: Optional[int] = None, ids: Optional[List[str]] = None) -> List[str]:
+    def download_files(self, count: Optional[int] = None, ids: Optional[List[str]] = None) -> List[str]:
         self.connection.connect()
+        print(4)
 
         identifiers = self._get_identifiers(count, ids)
-
         downloaded_files = self.downloader.download_fasta_files(identifiers)
-
         valid_files = self.validate_files(downloaded_files)
 
         print("\nArchivos FASTA válidos:", valid_files)
@@ -42,7 +40,6 @@ class MainOrchestrator:
         valid_files: List[str] = []
         for file_name in files:
             if file_name and all(validator.validate(file_name) for validator in self.validators):
-                # Usar la función oculta para obtener solo el nombre del archivo
                 valid_files.append(FilePathHelper.get_filename_only(file_name))
         return valid_files
 
