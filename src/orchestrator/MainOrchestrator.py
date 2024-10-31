@@ -1,7 +1,13 @@
+from io import StringIO
+
+from Bio import SeqIO
+
 from src.orchestrator.GCOrchestrator import GCOrchestrator
 from src.utils.GCContentCalculator import GCContentCalculator
 from src.orchestrator.DownloaderOrchestrator import DownloaderOrchestrator
 from src.orchestrator.ReaderOrchestrator import ReaderOrchestrator
+from src.utils.ProteinFastaWriter import ProteinFastaWriter
+from src.utils.ProteinTranslator import ProteinTranslator
 
 
 class MainOrchestrator:
@@ -39,5 +45,19 @@ class MainOrchestrator:
         custom_gc = self.calculate_gc_custom(filename)
         biopython_gc = self.calculate_gc_biopython(filename)
         GCOrchestrator.compare_gc_methods(custom_gc, biopython_gc)
+
+    def read_dna_sequences(self, fasta_content):
+        dna_records = list(SeqIO.parse(StringIO(fasta_content), "fasta"))
+        print(f"Número de secuencias de ADN leídas: {len(dna_records)}")
+        return dna_records
+
+    def translate_dna_to_proteins(self, dna_records):
+        protein_records = ProteinTranslator.translate_sequences(dna_records)
+        print(f"Número de secuencias de proteínas generadas: {len(protein_records)}")
+        return protein_records
+
+    def write_proteins_to_fasta(self, protein_records, output_file="output_proteins.fasta"):
+        fasta_writer = ProteinFastaWriter(output_file)
+        fasta_writer.write_protein_fasta(protein_records)
 
 

@@ -2,8 +2,9 @@ from io import StringIO
 from Bio import SeqIO
 from src.config.Config import Config
 from src.orchestrator.MainOrchestrator import MainOrchestrator
-from src.utils.protein_translator import ProteinTranslator
-from src.utils.protein_fasta_writer import ProteinFastaWriter
+from src.utils.ProteinTranslator import ProteinTranslator
+from src.utils.ProteinFastaWriter import ProteinFastaWriter
+
 
 def main(filename=None, download=None, file_ids=None):
     orchestrator = MainOrchestrator(Config)
@@ -46,4 +47,4 @@ def main(filename=None, download=None, file_ids=None):
 
 # Llamar a la función principal
 if __name__ == "__main__":
-    main("sequence.fasta", False)
+    main("NM_001301717.fasta", False)

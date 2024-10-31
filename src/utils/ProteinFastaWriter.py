@@ -1,10 +1,13 @@
 from Bio import SeqIO
 
+from src.config.Config import Config
+
+
 class ProteinFastaWriter:
     """Clase para escribir secuencias de proteínas en un archivo FASTA."""
 
     def __init__(self, output_file):
-        self.output_file = output_file
+        self.output_file = Config['download']['download_directory'] + '/' + output_file
 
     def write_protein_fasta(self, protein_records):
         """Escribe las secuencias de proteínas en un archivo FASTA de salida.
