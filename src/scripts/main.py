@@ -2,8 +2,8 @@ from io import StringIO
 from Bio import SeqIO
 from src.config.Config import Config
 from src.orchestrator.MainOrchestrator import MainOrchestrator
-from src.utils.protein_translator import ProteinTranslator
-from src.utils.protein_fasta_writer import ProteinFastaWriter
+from src.utils.aminoacid_translator import AminoAcidTranslator
+from src.utils.aminoacid_fasta_writer import AminoacidFastaWriter
 
 def main(filename=None, download=None, file_ids=None):
     orchestrator = MainOrchestrator(Config)
@@ -23,22 +23,25 @@ def main(filename=None, download=None, file_ids=None):
         # Leer secuencias de ADN desde el contenido del archivo FASTA
         dna_records = list(SeqIO.parse(StringIO(fasta_content), "fasta"))
 
-        # Comprobar cuántas secuencias se han leído
+        # Comprobar cuántas secuencias de ADN se han leído
         print(f"Número de secuencias de ADN leídas: {len(dna_records)}")
 
         # Calcular y comparar contenido de GC
         orchestrator.calculate_and_compare_gc_content(filename)
 
-        # Traducir secuencias de ADN a proteínas
-        protein_records = ProteinTranslator.translate_sequences(dna_records)
+        # Traducir secuencias de ADN a aminoácidos en los seis marcos de lectura
+        all_aminoacid_records = []
+        for dna_record in dna_records:
+            aminoacid_records = AminoAcidTranslator.translate_all_frames(dna_record)
+            all_aminoacid_records.extend(aminoacid_records)
 
-        # Comprobar cuántas secuencias de proteínas se han generado
-        print(f"Número de secuencias de proteínas generadas: {len(protein_records)}")
+        # Comprobar cuántas secuencias de aminoácidos se han generado
+        print(f"Número de secuencias de aminoácidos generadas: {len(all_aminoacid_records)}")
 
-        # Escribir las secuencias de proteínas en un archivo FASTA
-        protein_output_file = "output_proteins.fasta"  # Cambia el nombre del archivo de salida si es necesario
-        fasta_writer = ProteinFastaWriter(protein_output_file)
-        fasta_writer.write_protein_fasta(protein_records)
+        # Escribir las secuencias de aminoácidos en un archivo FASTA
+        aminoacid_output_file = "output_aminoacids.fasta"  # Cambia el nombre del archivo de salida si es necesario
+        fasta_writer = AminoacidFastaWriter(aminoacid_output_file)
+        fasta_writer.write_aminoacid_fasta(all_aminoacid_records)
 
     else:
         orchestrator.execute_read_all()
