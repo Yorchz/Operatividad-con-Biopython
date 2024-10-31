@@ -6,8 +6,8 @@ from src.orchestrator.GCOrchestrator import GCOrchestrator
 from src.utils.GCContentCalculator import GCContentCalculator
 from src.orchestrator.DownloaderOrchestrator import DownloaderOrchestrator
 from src.orchestrator.ReaderOrchestrator import ReaderOrchestrator
-from src.utils.ProteinFastaWriter import ProteinFastaWriter
-from src.utils.ProteinTranslator import ProteinTranslator
+from src.utils.AminoacidFastaWriter import AminoacidFastaWriter
+from src.utils.AminoAcidTranslator import AminoAcidTranslator
 
 
 class MainOrchestrator:
@@ -51,13 +51,16 @@ class MainOrchestrator:
         print(f"Número de secuencias de ADN leídas: {len(dna_records)}")
         return dna_records
 
-    def translate_dna_to_proteins(self, dna_records):
-        protein_records = ProteinTranslator.translate_sequences(dna_records)
-        print(f"Número de secuencias de proteínas generadas: {len(protein_records)}")
-        return protein_records
+    def translate_dna_to_aminoacids(self, dna_records):
+        all_aminoacid_records = []
+        for dna_record in dna_records:
+            aminoacid_records = AminoAcidTranslator.translate_all_frames(dna_record)
+            all_aminoacid_records.extend(aminoacid_records)
+        print(f"Número de secuencias de aminoácidos generadas: {len(all_aminoacid_records)}")
+        return all_aminoacid_records
 
-    def write_proteins_to_fasta(self, protein_records, output_file="output_proteins.fasta"):
-        fasta_writer = ProteinFastaWriter(output_file)
-        fasta_writer.write_protein_fasta(protein_records)
+    def write_aminoacids_to_fasta(self, all_aminoacid_records, output_file="output_proteins.fasta"):
+        fasta_writer = AminoacidFastaWriter(output_file)
+        fasta_writer.write_aminoacid_fasta(all_aminoacid_records)
 
 

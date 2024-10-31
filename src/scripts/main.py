@@ -2,8 +2,8 @@ from io import StringIO
 from Bio import SeqIO
 from src.config.Config import Config
 from src.orchestrator.MainOrchestrator import MainOrchestrator
-from src.utils.ProteinTranslator import ProteinTranslator
-from src.utils.ProteinFastaWriter import ProteinFastaWriter
+from src.utils.AminoAcidTranslator import ProteinTranslator
+from src.utils.AminoacidFastaWriter import ProteinFastaWriter
 
 
 def main(filename=None, download=None, file_ids=None):
