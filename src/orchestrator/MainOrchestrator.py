@@ -46,6 +46,10 @@ class MainOrchestrator:
         biopython_gc = self.calculate_gc_biopython(filename)
         GCOrchestrator.compare_gc_methods(custom_gc, biopython_gc)
 
+    def create_fasta_content(self, record_id, sequence):
+        fasta_content = f">{record_id}\n{sequence}\n"
+        return fasta_content
+
     def read_dna_sequences(self, fasta_content):
         dna_records = list(SeqIO.parse(StringIO(fasta_content), "fasta"))
         print(f"Número de secuencias de ADN leídas: {len(dna_records)}")
