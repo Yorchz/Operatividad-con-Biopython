@@ -11,7 +11,7 @@ class ReaderOrchestrator:
     def read_single_fasta(self, filename):
         """Read a single FASTA file by its name."""
         for seq_record in self.reader.read_fasta_by_name(filename):
-            return seq_record.id, seq_record.seq
+            return seq_record.id, str(seq_record.seq)
 
     def read_all_fastas(self):
         """Read all FASTA files in the directory."""
